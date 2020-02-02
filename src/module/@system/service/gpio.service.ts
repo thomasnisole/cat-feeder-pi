@@ -1,9 +1,15 @@
-import { Gpio } from 'pigpio';
-import { Injectable } from '@nestjs/common';
+import {Injectable} from '@nestjs/common';
+
+const args: string[] = process.argv.slice(2);
+const Gpio: any = require(args[0] === '--dev' ? 'pigpio-mock' : 'pigpio').Gpio;
+
+if (args[0] === '--dev') {
+  process.env.PIGPIO_NO_LOGGING = 'true';
+}
 
 export enum GPIOState {
-  HIGH = 1,
-  LOW = 0
+  HIGH = Gpio.HIGH,
+  LOW = Gpio.LOW
 }
 
 export enum GPIODirection {
@@ -14,9 +20,9 @@ export enum GPIODirection {
 @Injectable()
 export class GPIOService {
 
-  public outputs: Gpio[];
+  public outputs: typeof Gpio[];
 
-  public inputs: Gpio[];
+  public inputs: typeof Gpio[];
 
   public constructor() {
     this.outputs = [];
@@ -24,7 +30,7 @@ export class GPIOService {
   }
 
   public setup(pin: number, direction: GPIODirection): void {
-    const gpio: Gpio = new Gpio(
+    const gpio: typeof Gpio = new Gpio(
       pin,
       {
         mode: direction
@@ -51,7 +57,6 @@ export class GPIOService {
   }
 
   public input(pin: number): GPIOState {
-    return null;
     if (!this.inputs[pin]) {
       throw new Error('No input GPIO initialized for pin ' + pin);
     }

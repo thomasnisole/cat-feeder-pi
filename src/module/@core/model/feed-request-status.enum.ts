@@ -1,0 +1,6 @@
+export enum FeedRequestStatus {
+  WAITING = 'WAITING',
+  FEEDING = 'FEEDING',
+  TERMINATED = 'TERMINATED',
+  CANCELED = 'CANCELED'
+}

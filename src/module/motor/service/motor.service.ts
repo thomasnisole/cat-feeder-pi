@@ -1,20 +1,26 @@
-import { Injectable } from '@nestjs/common';
-import { from, Observable } from 'rxjs';
-import { map, tap } from 'rxjs/operators';
-import { StepperService } from './stepper.service';
+import {Injectable} from '@nestjs/common';
+import {StepperService} from './stepper.service';
+import {LoggerService} from 'nest-logger';
 
 @Injectable()
 export class MotorService {
 
-  public constructor(private stepper: StepperService) {
-    this.stepper.initialize(200, 4, 17, 27, 22);
+  public constructor(private stepper: StepperService,
+                     private readonly loggerService: LoggerService) {
+    this.stepper.initialize(200, 6, 13, 19, 26);
     this.stepper.setSpeed(60);
   }
 
-  public feed(revolutions: number): Observable<void> {
-    return from(this.stepper.steps(-(revolutions * 200))).pipe(
-      tap(() => console.log('move complete')),
-      map(() => void 0)
-    );
+  public async feed(revolutions: number): Promise<void> {
+    this.loggerService.info('Feed');
+
+    for (let i: number = 0; i < revolutions; i++) {
+      this.loggerService.debug(-200);
+      await this.stepper.steps(-200);
+      this.loggerService.debug(100);
+      await this.stepper.steps(100);
+    }
+
+    this.loggerService.info('Move complete');
   }
 }

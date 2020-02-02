@@ -1,5 +1,5 @@
-import { DateConverter, JsonProperty } from 'ts-serializer-core';
-import { Alarm } from './alarm.model';
+import {JsonProperty} from 'ts-serializer-core';
+import {Alarm} from './alarm.model';
 
 export class Feeder {
 
@@ -9,14 +9,7 @@ export class Feeder {
   @JsonProperty('name')
   public name: string;
 
-  @JsonProperty({name: 'alarms', type: Alarm})
   public alarms: Alarm[];
-
-  @JsonProperty({name: 'lastFeedAt', customConverter: DateConverter, excludeFromJson: true})
-  public lastFeedAt: Date;
-
-  @JsonProperty('defaultRevolutionCount')
-  public defaultRevolutionCount: number;
 
   public hasAlarm(): boolean {
     return this.alarms && this.alarms.length > 0;

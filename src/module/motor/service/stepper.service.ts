@@ -1,13 +1,13 @@
-import { Injectable } from '@nestjs/common';
-import { GPIODirection, GPIOService, GPIOState } from '../../system/service/gpio.service';
+import {Injectable} from '@nestjs/common';
+import {GPIOService, GPIODirection, GPIOState} from '../../@system/service/gpio.service';
 
 enum StepperDirection {
   BACKWARD = 0,
   FORWARD = 1
 }
 
-function sleep(ms: number) {
-  return new Promise(resolve => setTimeout(resolve, ms));
+function sleep(ms: number): Promise<void> {
+  return new Promise((resolve: (value: any) => void) => setTimeout(resolve, ms));
 }
 
 @Injectable()

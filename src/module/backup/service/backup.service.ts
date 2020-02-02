@@ -1,10 +1,10 @@
-import { Injectable } from '@nestjs/common';
-import { Feeder } from '../../core/model/feeder.model';
-import { Observable, of } from 'rxjs';
+import {Injectable} from '@nestjs/common';
+import {Feeder} from '../../@core/model/feeder.model';
+import {Observable, of} from 'rxjs';
 import * as fs from 'fs';
-import { SerializerService } from '../../system/service/serializer.service';
-import { DeserializerService } from '../../system/service/deserializer.service';
-import { map } from 'rxjs/operators';
+import {SerializerService} from '../../@system/service/serializer.service';
+import {DeserializerService} from '../../@system/service/deserializer.service';
+import {map} from 'rxjs/operators';
 
 @Injectable()
 export class BackupService {

@@ -1,6 +1,5 @@
 import {Module} from '@nestjs/common';
-import {MotorService} from './service/motor.service';
-import {StepperService} from './service/stepper.service';
+import {CronService} from './service/cron.service';
 import {SystemModule} from '../@system/system.module';
 import {LoggerModule} from '../logger/logger.module';
 
@@ -10,11 +9,10 @@ import {LoggerModule} from '../logger/logger.module';
     SystemModule
   ],
   providers: [
-    MotorService,
-    StepperService
+    CronService
   ],
   exports: [
-    MotorService
+    CronService
   ]
 })
-export class MotorModule {}
+export class CronModule {}

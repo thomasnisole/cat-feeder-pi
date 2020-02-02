@@ -1,5 +1,6 @@
-import { JsonProperty } from 'ts-serializer-core';
+import {JsonProperty} from 'ts-serializer-core';
 import moment = require('moment');
+import {Moment} from 'moment';
 
 export class Alarm {
 
@@ -16,16 +17,15 @@ export class Alarm {
   public revolutionCount: number = 10;
 
   public toDate(): Date {
-    const d: Date = new Date();
-    d.setMinutes(this.minute);
-    d.setHours(this.hour);
+    const m: Moment = moment();
+    const mCompare: Moment = m.clone();
+    m.minute(this.minute);
+    m.hour(this.hour);
 
-    const momentD: moment.Moment = moment(d);
-
-    while (!momentD.isAfter(moment())) {
-      momentD.add(1, 'd');
+    while (!m.isAfter(mCompare)) {
+      m.add(1, 'd');
     }
 
-    return momentD.toDate();
+    return m.toDate();
   }
 }

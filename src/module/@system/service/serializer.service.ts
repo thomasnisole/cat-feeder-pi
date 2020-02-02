@@ -1,5 +1,5 @@
-import { Injectable } from '@nestjs/common';
-import { Serializer } from 'ts-serializer-core';
+import {Injectable} from '@nestjs/common';
+import {Serializer} from 'ts-serializer-core';
 
 @Injectable()
 export class SerializerService {
