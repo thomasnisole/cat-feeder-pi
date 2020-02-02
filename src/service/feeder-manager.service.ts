@@ -14,7 +14,7 @@ import {LoggerService} from 'nest-logger';
 import {softCache} from '@witty-services/rxjs-common';
 import {FeedRequestType} from '../module/@core/model/feed-request-type.enum';
 
-const FEEDER_ID: string = 'PseXgNA9V1lheR4GMpul';
+const FEEDER_ID: string = require('../../feeder.json').feeder_id;
 
 @Injectable()
 export class FeederManagerService {
