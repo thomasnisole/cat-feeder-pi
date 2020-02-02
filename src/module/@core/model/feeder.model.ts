@@ -19,6 +19,9 @@ export class Feeder {
     let index: number = -1;
     let i: number = 0;
     const currentTime: Date = new Date();
+    this.alarms = this.alarms.sort((a: Alarm, b: Alarm) => {
+      return a.hour - b.hour || a.minute - b.minute;
+    });
 
     while (i < this.alarms.length && index === -1) {
       if (this.alarms[i].hour < currentTime.getHours()) {

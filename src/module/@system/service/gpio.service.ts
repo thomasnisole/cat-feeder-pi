@@ -8,8 +8,8 @@ if (args[0] === '--dev') {
 }
 
 export enum GPIOState {
-  HIGH = Gpio.HIGH,
-  LOW = Gpio.LOW
+  HIGH = 1,
+  LOW = 0
 }
 
 export enum GPIODirection {
