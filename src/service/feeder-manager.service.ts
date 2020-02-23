@@ -73,7 +73,7 @@ export class FeederManagerService {
           switchMap((feedRequest: FeedRequest) => this.feedRequestService.create(feedRequest).pipe(
             mapTo(feedRequest),
             catchError((err: Error) => {
-              this.loggerService.error(err.message);
+              this.loggerService.error(`Scheduled feed request creation error : ${err.message}`);
 
               return of(feedRequest);
             })
@@ -90,7 +90,7 @@ export class FeederManagerService {
       switchMap((feedRequest: FeedRequest) => this.feedRequestService.markAsFeeding(feedRequest).pipe(
         mapTo(feedRequest),
         catchError((err: Error) => {
-          this.loggerService.error(err.message);
+          this.loggerService.error(`Feed request feeding status error : ${err.message}`);
 
           return of(feedRequest);
         })
@@ -100,7 +100,7 @@ export class FeederManagerService {
       )),
       switchMap((feedRequest: FeedRequest) => this.feedRequestService.markAsTerminated(feedRequest).pipe(
         catchError((err: Error) => {
-          this.loggerService.error(err.message);
+          this.loggerService.error(`Feed request terminated status error : ${err.message}`);
 
           return of(void 0);
         })

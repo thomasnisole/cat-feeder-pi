@@ -6,12 +6,13 @@ export function loggerFactory(): LoggerService {
     'debug',
     [
       LoggerService.console({
-        timeFormat: 'HH:mm',
+        timeFormat: 'YYYY-MM-DD HH:mm',
         consoleOptions: {
           level: 'debug'
         }
       }),
       LoggerService.rotate({
+        timeFormat: 'YYYY-MM-DD HH:mm',
         colorize: false,
         fileOptions: {
           dirname: '/var/log/cat-feeder-pi/',

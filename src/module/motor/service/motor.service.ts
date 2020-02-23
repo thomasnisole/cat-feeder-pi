@@ -15,9 +15,7 @@ export class MotorService {
     this.loggerService.info('Feed');
 
     for (let i: number = 0; i < revolutions; i++) {
-      this.loggerService.debug(-200);
       await this.stepper.steps(-200);
-      this.loggerService.debug(100);
       await this.stepper.steps(100);
     }
 

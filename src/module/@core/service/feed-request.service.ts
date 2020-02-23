@@ -3,7 +3,7 @@ import {FeedRequest} from '../model/feed-request.model';
 import {from, Observable, Observer} from 'rxjs';
 import {DeserializerService} from '../../@system/service/deserializer.service';
 import * as admin from 'firebase-admin';
-import {map, switchMap, tap, toArray} from 'rxjs/operators';
+import {first, map, switchMap, tap, toArray} from 'rxjs/operators';
 import {Feeder} from '../model/feeder.model';
 import {softCache} from '@witty-services/rxjs-common';
 import {FeedRequestStatus} from '../model/feed-request-status.enum';
@@ -59,6 +59,7 @@ export class FeedRequestService {
     return from(
       this.db.collection(`/feeders/${feedRequest.feeder.id}/feed-requests`).add(this.serializerService.serialize(feedRequest))
     ).pipe(
+      first(),
       map((ref: FirebaseFirestore.DocumentReference<any>) => ref.id),
       tap((id: string) => feedRequest.id = id),
       map(() => feedRequest)
@@ -71,6 +72,7 @@ export class FeedRequestService {
     return from(
       this.db.doc(`/feeders/${feedRequest.feeder.id}/feed-requests/${feedRequest.id}`).update(this.serializerService.serialize(feedRequest))
     ).pipe(
+      first(),
       map(() => void 0)
     );
   }
