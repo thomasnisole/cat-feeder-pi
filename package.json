@@ -27,7 +27,7 @@
     "cron": "^1.7.1",
     "firebase-admin": "^8.9.2",
     "lodash": "^4.17.15",
-    "moment": "^2.24.0",
+    "moment": "^2.29.2",
     "nest-logger": "^5.0.0",
     "reflect-metadata": "^0.1.13",
     "rimraf": "^3.0.0",
