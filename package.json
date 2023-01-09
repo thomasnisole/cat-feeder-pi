@@ -25,7 +25,7 @@
     "@nestjs/platform-express": "^6.10.14",
     "@witty-services/rxjs-common": "^1.0.1",
     "cron": "^1.7.1",
-    "firebase-admin": "^8.9.2",
+    "firebase-admin": "^11.4.1",
     "lodash": "^4.17.15",
     "moment": "^2.24.0",
     "nest-logger": "^5.0.0",
